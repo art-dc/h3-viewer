@@ -24,22 +24,22 @@ const ZOOM_TO_H3_RES_CORRESPONDENCE = {
   6: 2,
   7: 3,
   8: 3,
-  9: 4,
+  9: 5,
   10: 5,
-  11: 6,
-  12: 6,
-  13: 7,
-  14: 8,
-  15: 9,
-  16: 9,
-  17: 10,
-  18: 10,
-  19: 11,
-  20: 11,
-  21: 12,
-  22: 13,
-  23: 14,
-  24: 15,
+  11: 5,
+  12: 5,
+  13: 5,
+  14: 7,
+  15: 8,
+  16: 8,
+  17: 8,
+  18: 8,
+  19: 8,
+  20: 8,
+  21: 8,
+  22: 8,
+  23: 8,
+  24: 8,
 };
 
 const H3_RES_TO_ZOOM_CORRESPONDENCE = {};
@@ -48,9 +48,7 @@ for (const [zoom, res] of Object.entries(ZOOM_TO_H3_RES_CORRESPONDENCE)) {
 }
 
 const getH3ResForMapZoom = (mapZoom) => {
-  return (
-    ZOOM_TO_H3_RES_CORRESPONDENCE[mapZoom] ?? Math.floor((mapZoom - 1) * 0.7)
-  );
+  return ZOOM_TO_H3_RES_CORRESPONDENCE[mapZoom] ?? 1;
 };
 
 const h3BoundsToPolygon = (lngLatH3Bounds) => {
