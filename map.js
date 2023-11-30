@@ -92,6 +92,7 @@ var app = new Vue({
     searchH3Id: undefined,
     gotoLatLon: undefined,
     currentH3Res: undefined,
+    currentZoomLevel: undefined,
   },
 
   computed: {},
@@ -123,6 +124,7 @@ var app = new Vue({
       hexLayer = L.layerGroup().addTo(map);
 
       const zoom = map.getZoom();
+      this.currentZoomLevel = zoom;
       this.currentH3Res = getH3ResForMapZoom(zoom);
       const { _southWest: sw, _northEast: ne } = map.getBounds();
 
