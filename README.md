@@ -1,4 +1,5 @@
 # h3-viewer
+
 View Uber H3 cells on a map
 
 You can preview it at: https://wolf-h3-viewer.glitch.me/
@@ -18,4 +19,3 @@ The link https://wolf-h3-viewer.glitch.me/?h3=8a589c98475ffff will highlight an 
 ## Other Tips
 
 Clicking on an H3 cell will copy its ID to the clipboard.
-
