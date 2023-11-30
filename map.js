@@ -124,17 +124,11 @@ var app = new Vue({
       const zoom = map.getZoom();
       this.currentZoomLevel = zoom;
       this.currentH3Res = getH3ResForMapZoom(zoom);
-      const { _southWest: sw, _northEast: ne } = map.getBounds();
 
-      const boundsPolygon = [
-        [sw.lat, sw.lng],
-        [ne.lat, sw.lng],
-        [ne.lat, ne.lng],
-        [sw.lat, ne.lng],
-        [sw.lat, sw.lng],
-      ];
+      const { lat, lng } = map.getCenter();
 
-      const h3s = h3.polygonToCells(boundsPolygon, this.currentH3Res);
+      const cellId = h3.latLngToCell(lat, lng, this.currentH3Res);
+      const h3s = h3.gridDisk(cellId, 1);
 
       for (const h3id of h3s) {
         const polygonLayer = L.layerGroup().addTo(hexLayer);
