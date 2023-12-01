@@ -20,26 +20,26 @@ const GeoUtils = {
 };
 
 const ZOOM_TO_H3_RES_CORRESPONDENCE = {
-  5: 1 + 1,
-  6: 2 + 1,
-  7: 3 + 1,
-  8: 3 + 1,
-  9: 5 + 1,
-  10: 5 + 1,
-  11: 5 + 1,
-  12: 5 + 1,
-  13: 5 + 1,
-  14: 7 + 1,
-  15: 8 + 1,
-  16: 8 + 1,
-  17: 8 + 1,
-  18: 8 + 1,
-  19: 8 + 1,
-  20: 8 + 1,
-  21: 8 + 1,
-  22: 8 + 1,
-  23: 8 + 1,
-  24: 8 + 1,
+  5: 1,
+  6: 2,
+  7: 3,
+  8: 3,
+  9: 5,
+  10: 5,
+  11: 5,
+  12: 5,
+  13: 5,
+  14: 7,
+  15: 8,
+  16: 8,
+  17: 8,
+  18: 8,
+  19: 8,
+  20: 8,
+  21: 8,
+  22: 8,
+  23: 8,
+  24: 8,
 };
 
 const H3_RES_TO_ZOOM_CORRESPONDENCE = {};
@@ -128,7 +128,7 @@ var app = new Vue({
       const { lat, lng } = map.getCenter();
 
       const cellId = h3.latLngToCell(lat, lng, this.currentH3Res);
-      const h3s = h3.gridDisk(cellId, 1 + 1);
+      const h3s = h3.gridDisk(cellId, 1);
 
       for (const h3id of h3s) {
         const polygonLayer = L.layerGroup().addTo(hexLayer);
