@@ -53,7 +53,7 @@ const ZOOM_TO_H3_RES_CORRESPONDENCE = {
   6: 2,
   7: 3,
   8: 3,
-  9: 5,
+  9: 6,
   10: 6,
   11: 6,
   12: 6,
