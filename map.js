@@ -128,7 +128,10 @@ var app = new Vue({
       const { lat, lng } = map.getCenter();
 
       const cellId = h3.latLngToCell(lat, lng, this.currentH3Res);
-      const h3s = h3.gridDisk(cellId, 1);
+
+      const grid = h3.gridDisk(cellId, 1);
+
+      const h3s = h3.compactCells(grid);
 
       for (const h3id of h3s) {
         const polygonLayer = L.layerGroup().addTo(hexLayer);
