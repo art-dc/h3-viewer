@@ -19,6 +19,35 @@ const GeoUtils = {
   },
 };
 
+// Get the coordinates for a simple bounding box
+const getSimpleLatLngBounds = (lat, lng, zoomLevel) => {
+  const pi = 3.14;
+  const R = 6371e3;
+
+  let radius;
+  if (zoomLevel >= 15) {
+    radius = 2000;
+  } else if (zoomLevel >= 14) {
+    radius = 4000;
+  } else if (zoomLevel >= 9) {
+    radius = 8000;
+  } else {
+    radius = 36000;
+  }
+
+  const minLat = +lat - ((radius / R) * 180) / pi;
+  const maxLat = +lat + ((radius / R) * 180) / pi;
+  const minLng = +lng - ((radius / R) * 180) / pi / Math.cos((+lat * pi) / 180);
+  const maxLng = +lng + ((radius / R) * 180) / pi / Math.cos((+lat * pi) / 180);
+
+  return {
+    minLat,
+    maxLat,
+    minLng,
+    maxLng,
+  };
+};
+
 const ZOOM_TO_H3_RES_CORRESPONDENCE = {
   5: 1,
   6: 2,
@@ -171,6 +200,22 @@ var app = new Vue({
           L.svgOverlay(svgElement, svgElementBounds).addTo(polygonLayer);
         }
       }
+
+      const { minLat, maxLat, minLng, maxLng } = getSimpleLatLngBounds(
+        lat,
+        lng,
+        this.currentZoomLevel
+      );
+      const boundingBoxLayer = L.layerGroup().addTo(hexLayer);
+      L.polygon(
+        [
+          [minLat, minLng],
+          [minLat, maxLng],
+          [maxLat, maxLng],
+          [maxLat, minLng],
+        ],
+        { color: "#CC5500" }
+      ).addTo(boundingBoxLayer);
     },
 
     gotoLocation: function () {
