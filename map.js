@@ -223,9 +223,9 @@ var app = new Vue({
       }).addTo(map);
       pointsLayer = L.layerGroup([]).addTo(map);
 
-      const initialLat = queryParams.lat ?? 0;
-      const initialLng = queryParams.lng ?? 0;
       const initialZoom = queryParams.zoom ?? 5;
+      const initialLat = queryParams.lat ?? 52;
+      const initialLng = queryParams.lng ?? 5.1;
       map.setView([initialLat, initialLng], initialZoom);
       map.on("zoomend", this.updateMapDisplay);
       map.on("moveend", this.updateMapDisplay);
